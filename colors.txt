@@ -1,0 +1,24 @@
+Red - ce2f2f
+Orange - e7b451
+Yellow - d8d477
+lime - 94cc51
+green - 47bf40
+cyan - 40bfbf
+blue - 4058bf
+light_blue - 919dca
+purple - 
+magenta - bf40b1
+pink - c99fb9
+brown - 7d4f18
+
+black      -63  26
+white      105  95
+light_gray  89  84
+gray        27  18
+
+Smooth
+black      -95  40
+white      108  62
+light_gray  71  62
+gray        25  32
+
