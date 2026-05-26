@@ -1,6 +1,6 @@
-package com.example.an_addon;
+package com.lambdamagus.ars_deco;
 
-import com.example.an_addon.registry.ModRegistry;
+import com.lambdamagus.ars_deco.registry.ModRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -14,13 +14,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(ExampleANAddon.MODID)
-public class ExampleANAddon {
+@Mod(ArsDeco.MODID)
+public class ArsDeco {
     public static final String MODID = "an_addon";
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public ExampleANAddon(IEventBus modEventBus, ModContainer modContainer) {
+    public ArsDeco(IEventBus modEventBus, ModContainer modContainer) {
         ModRegistry.registerRegistries(modEventBus);
         ArsNouveauRegistry.registerGlyphs();
         modEventBus.addListener(this::setup);

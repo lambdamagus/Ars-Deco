@@ -1,0 +1,93 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Client",
+      "presentation": {
+        "group": "Mod Development - ars-deco",
+        "order": 0
+      },
+      "projectName": "ars-deco",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\harup\\projects\\ars-deco\\build\\moddev\\clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\harup\\projects\\ars-deco\\build\\moddev\\clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dan_addon%%C:\\Users\\harup\\projects\\ars-deco\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Data",
+      "presentation": {
+        "group": "Mod Development - ars-deco",
+        "order": 1
+      },
+      "projectName": "ars-deco",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\harup\\projects\\ars-deco\\build\\moddev\\dataRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\harup\\projects\\ars-deco\\build\\moddev\\dataRunVmArgs.txt",
+        "-Dfml.modFolders\u003dan_addon%%C:\\Users\\harup\\projects\\ars-deco\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "GameTestServer",
+      "presentation": {
+        "group": "Mod Development - ars-deco",
+        "order": 2
+      },
+      "projectName": "ars-deco",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\harup\\projects\\ars-deco\\build\\moddev\\gameTestServerRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\harup\\projects\\ars-deco\\build\\moddev\\gameTestServerRunVmArgs.txt",
+        "-Dfml.modFolders\u003dan_addon%%C:\\Users\\harup\\projects\\ars-deco\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Server",
+      "presentation": {
+        "group": "Mod Development - ars-deco",
+        "order": 3
+      },
+      "projectName": "ars-deco",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\harup\\projects\\ars-deco\\build\\moddev\\serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\harup\\projects\\ars-deco\\build\\moddev\\serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dan_addon%%C:\\Users\\harup\\projects\\ars-deco\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    }
+  ]
+}

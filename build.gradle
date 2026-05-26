@@ -132,6 +132,10 @@ repositories {
     maven {
         name = "Illusive Soulworks maven"
         url = "https://maven.theillusivec4.top/"
+        content {
+            includeGroup("top.theillusivec4.curios")
+            includeGroup("top.theillusivec4.caelus")
+        }
     }
     maven {
         name = "Jared's maven"
@@ -144,6 +148,11 @@ repositories {
     maven {
         name = "OctoStudios"
         url = uri("https://maven.octo-studios.com/releases")
+        content {
+            includeGroupByRegex("dev\\.octo.*")
+            includeGroupByRegex("io\\.github\\.octo.*")
+            includeGroupByRegex("com\\.octo.*")
+        }
     }
     maven { url 'https://jitpack.io' }
 

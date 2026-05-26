@@ -1,6 +1,6 @@
-package com.example.an_addon.registry;
+package com.lambdamagus.ars_deco.registry;
 
-import com.example.an_addon.item.ExampleCosmetic;
+import com.lambdamagus.ars_deco.item.ExampleCosmetic;
 import com.hollingsworth.arsnouveau.api.sound.SpellSound;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -12,8 +12,8 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
 
-import static com.example.an_addon.ExampleANAddon.MODID;
-import static com.example.an_addon.ExampleANAddon.prefix;
+import static com.lambdamagus.ars_deco.ArsDeco.MODID;
+import static com.lambdamagus.ars_deco.ArsDeco.prefix;
 import static net.minecraft.core.registries.Registries.SOUND_EVENT;
 
 public class ModRegistry {

@@ -21,6 +21,9 @@ build
 eclipse
 run
 classes
+__pycache__/
+*.pyc
+deployment.log
 
 # Files from Forge MDK
 forge*changelog.txt

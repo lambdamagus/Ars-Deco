@@ -1,4 +1,4 @@
-package com.example.an_addon;
+package com.lambdamagus.ars_deco;
 
 
 import net.neoforged.bus.api.SubscribeEvent;

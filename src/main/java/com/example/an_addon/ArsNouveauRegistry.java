@@ -1,7 +1,7 @@
-package com.example.an_addon;
+package com.lambdamagus.ars_deco;
 
-import com.example.an_addon.glyphs.TestEffect;
-import com.example.an_addon.registry.ModRegistry;
+import com.lambdamagus.ars_deco.glyphs.TestEffect;
+import com.lambdamagus.ars_deco.registry.ModRegistry;
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry;
 import com.hollingsworth.arsnouveau.api.registry.SpellSoundRegistry;
 import com.hollingsworth.arsnouveau.api.sound.SpellSound;
