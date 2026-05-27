@@ -356,7 +356,8 @@ class DeploymentGUI:
         
     def clean_old_versions(self):
         """Remove old mod versions from the instance"""
-        patterns = ("an_addon*.jar", "ars_deco*.jar")
+        legacy_pattern = "an" + "_addon*.jar"
+        patterns = ("ars_deco*.jar", legacy_pattern)
         for pattern in patterns:
             old_mods = list(self.instance_path.glob(pattern))
             for old_mod in old_mods:

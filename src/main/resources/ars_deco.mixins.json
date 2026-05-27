@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "lambdamagus.ars_deco.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "ars_deco.refmap.json",
+  "mixins": [
+    "BlockEntityDyeMixin",
+    "BlockItemPlacementMixin"
+  ],
+  "minVersion": "0.8",
+  "client": [
+    "client.GenericModelDyeTextureMixin",
+    "client.GeoItemRendererDyeTextureMixin"
+  ]
+}

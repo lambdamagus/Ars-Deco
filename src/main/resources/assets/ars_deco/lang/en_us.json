@@ -1,0 +1,7 @@
+{
+	"ars_deco.glyph_desc.glyph_test": "This is my test!",
+	"ars_deco.glyph_name.glyph_test": "Test",
+
+	"item.ars_deco.star_hat": "Star Hat",
+	"tooltip.ars_deco.dye_color": "Dyed: %s"
+}
