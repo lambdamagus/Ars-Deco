@@ -2,6 +2,7 @@ package lambdamagus.ars_deco.mixin.client;
 
 import com.hollingsworth.arsnouveau.client.renderer.tile.GenericModel;
 import lambdamagus.ars_deco.dye.ArsDecoDyeableBlockEntity;
+import lambdamagus.ars_deco.dye.ClientPlacedDyeColors;
 import lambdamagus.ars_deco.dye.DyeTextures;
 import lambdamagus.ars_deco.dye.DyeableArsBlocks;
 import net.minecraft.resources.ResourceLocation;
@@ -26,11 +27,15 @@ public abstract class GenericModelDyeTextureMixin<T extends GeoAnimatable> {
 
         DyeColor color = dyeable.arsDeco$getColor().orElse(null);
         if (color == null) {
-            return;
+            color = ClientPlacedDyeColors.getColor(blockEntity.getBlockPos(), blockEntity.getBlockState()).orElse(null);
+            if (color == null) {
+                return;
+            }
         }
 
+        DyeColor resolvedColor = color;
         DyeableArsBlocks.target(blockEntity.getBlockState().getBlock())
-                .map(target -> DyeTextures.coloredTexture(target, color))
+                .map(target -> DyeTextures.coloredTexture(target, resolvedColor))
                 .ifPresent(cir::setReturnValue);
     }
 }

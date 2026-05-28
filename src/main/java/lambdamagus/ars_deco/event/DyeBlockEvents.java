@@ -20,18 +20,27 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.ChunkWatchEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.WeakHashMap;
+
 @EventBusSubscriber(modid = ArsDeco.MODID)
 public final class DyeBlockEvents {
+    private static final Map<ServerLevel, Map<Long, DyeColor>> PENDING_BREAK_COLORS = new WeakHashMap<>();
+
     private DyeBlockEvents() {
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         ItemStack held = event.getItemStack();
         DyeColor color = DyeColor.getColor(held);
@@ -46,6 +55,9 @@ public final class DyeBlockEvents {
             return;
         }
 
+        event.setUseBlock(TriState.FALSE);
+        event.setUseItem(TriState.FALSE);
+
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (blockEntity instanceof ArsDecoDyeableBlockEntity dyeable) {
             if (dyeable.arsDeco$getColor().filter(color::equals).isPresent()) {
@@ -59,6 +71,11 @@ public final class DyeBlockEvents {
                 blockEntity.setChanged();
                 level.sendBlockUpdated(pos, blockEntity.getBlockState(), blockEntity.getBlockState(), 3);
                 level.playSound(null, pos, SoundEvents.DYE_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                if (level instanceof ServerLevel serverLevel) {
+                    PlacedDyeColors.PlacedColor placedColor = new PlacedDyeColors.PlacedColor(target.blockId(), color);
+                    PlacedDyeColors.get(serverLevel).set(pos, target.blockId(), color);
+                    PacketDistributor.sendToPlayersTrackingChunk(serverLevel, level.getChunk(pos).getPos(), new SyncBlockDyeColorPayload(pos, placedColor));
+                }
 
                 Player player = event.getEntity();
                 if (!player.getAbilities().instabuild) {
@@ -96,6 +113,18 @@ public final class DyeBlockEvents {
     }
 
     @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (!(event.getLevel() instanceof ServerLevel serverLevel) || DyeableArsBlocks.target(event.getState().getBlock()).isEmpty()) {
+            return;
+        }
+
+        DyeColor color = colorAt(serverLevel, event.getPos(), event.getState(), serverLevel.getBlockEntity(event.getPos()));
+        if (color != null) {
+            PENDING_BREAK_COLORS.computeIfAbsent(serverLevel, level -> new HashMap<>()).put(event.getPos().asLong(), color);
+        }
+    }
+
+    @SubscribeEvent
     public static void onBlockDrops(BlockDropsEvent event) {
         if (DyeableArsBlocks.target(event.getState().getBlock()).isEmpty()) {
             return;
@@ -112,10 +141,8 @@ public final class DyeBlockEvents {
             }
         }
 
-        if (event.getBlockEntity() == null) {
-            PlacedDyeColors.get(event.getLevel()).clear(event.getPos());
-            PacketDistributor.sendToPlayersTrackingChunk(event.getLevel(), event.getLevel().getChunk(event.getPos()).getPos(), new SyncBlockDyeColorPayload(event.getPos(), null));
-        }
+        PlacedDyeColors.get(event.getLevel()).clear(event.getPos());
+        PacketDistributor.sendToPlayersTrackingChunk(event.getLevel(), event.getLevel().getChunk(event.getPos()).getPos(), new SyncBlockDyeColorPayload(event.getPos(), null));
     }
 
     @SubscribeEvent
@@ -127,14 +154,28 @@ public final class DyeBlockEvents {
     }
 
     private static DyeColor colorFromDropSource(BlockDropsEvent event) {
-        if (event.getBlockEntity() instanceof ArsDecoDyeableBlockEntity dyeable) {
-            return dyeable.arsDeco$getColor().orElse(null);
+        DyeColor color = colorAt(event.getLevel(), event.getPos(), event.getState(), event.getBlockEntity());
+        if (color != null) {
+            return color;
         }
 
-        ResourceLocation blockId = DyeableArsBlocks.target(event.getState().getBlock()).map(DyeTarget::blockId).orElse(null);
+        Map<Long, DyeColor> levelColors = PENDING_BREAK_COLORS.get(event.getLevel());
+        return levelColors == null ? null : levelColors.remove(event.getPos().asLong());
+    }
+
+    private static DyeColor colorAt(ServerLevel level, BlockPos pos, net.minecraft.world.level.block.state.BlockState state, BlockEntity blockEntity) {
+        if (blockEntity instanceof ArsDecoDyeableBlockEntity dyeable) {
+            DyeColor color = dyeable.arsDeco$getColor().orElse(null);
+            if (color != null) {
+                return color;
+            }
+        }
+
+        ResourceLocation blockId = DyeableArsBlocks.target(state.getBlock()).map(DyeTarget::blockId).orElse(null);
         if (blockId == null) {
             return null;
         }
-        return PlacedDyeColors.get(event.getLevel()).getColor(event.getPos(), blockId).orElse(null);
+        return PlacedDyeColors.get(level).getColor(pos, blockId).orElse(null);
     }
+
 }

@@ -54,8 +54,13 @@ public class DyedBakedModel extends BakedModelWrapper<BakedModel> {
         if (color == null) {
             return originalModel.getModelData(level, pos, state, modelData);
         }
+        DyeTarget target = DyeableArsBlocks.target(state.getBlock()).orElse(null);
+        if (target == null) {
+            return originalModel.getModelData(level, pos, state, modelData);
+        }
         return originalModel.getModelData(level, pos, state, modelData).derive()
                 .with(DyeModelProperties.DYE_COLOR, color)
+                .with(DyeModelProperties.DYE_TARGET, target)
                 .build();
     }
 
@@ -81,12 +86,32 @@ public class DyedBakedModel extends BakedModelWrapper<BakedModel> {
     }
 
     @Override
+    public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, RandomSource rand) {
+        if (fixedColor == null || fixedTarget == null) {
+            return originalModel.getQuads(state, side, rand);
+        }
+
+        TextureAtlasSprite newSprite = sprite(fixedTarget, fixedColor);
+        List<BakedQuad> originalQuads = originalModel.getQuads(state, side, rand);
+        List<BakedQuad> retextured = new ArrayList<>(originalQuads.size());
+        for (BakedQuad quad : originalQuads) {
+            retextured.add(quadCache.retexture(quad, newSprite));
+        }
+        return retextured;
+    }
+
+    @Override
     public TextureAtlasSprite getParticleIcon(ModelData data) {
         DyeColor color = fixedColor != null ? fixedColor : data.get(DyeModelProperties.DYE_COLOR);
         if (color == null) {
             return originalModel.getParticleIcon(data);
         }
-        return originalModel.getParticleIcon(data);
+
+        DyeTarget target = fixedTarget != null ? fixedTarget : data.get(DyeModelProperties.DYE_TARGET);
+        if (target == null) {
+            return originalModel.getParticleIcon(data);
+        }
+        return sprite(target, color);
     }
 
     @Override
