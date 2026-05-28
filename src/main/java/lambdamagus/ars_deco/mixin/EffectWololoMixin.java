@@ -31,7 +31,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Comparator;
+import java.util.function.Supplier;
 
 @Mixin(EffectWololo.class)
 public abstract class EffectWololoMixin {
@@ -91,11 +94,35 @@ public abstract class EffectWololoMixin {
     }
 
     private static DyeItem arsDeco$closestDye(SpellContext spellContext) {
-        ParticleColor spellColor = spellContext.getSpell().color();
+        ParticleColor spellColor = arsDeco$wololoColor(spellContext);
         ParticleColor targetColor = EffectWololo.vanillaColors.keySet().stream()
                 .min(Comparator.comparingDouble(color -> color.euclideanDistance(spellColor)))
                 .orElse(ParticleColor.WHITE);
         Item item = EffectWololo.vanillaColors.get(targetColor);
         return item instanceof DyeItem dyeItem ? dyeItem : null;
+    }
+
+    private static ParticleColor arsDeco$wololoColor(SpellContext spellContext) {
+        try {
+            Class<?> registry = Class.forName("com.hollingsworth.arsnouveau.api.registry.ParticleTimelineRegistry");
+            Field timelineField = registry.getField("WOLOLO_TIMELINE");
+            Object timelineHolder = timelineField.get(null);
+            if (!(timelineHolder instanceof Supplier<?> supplier)) {
+                return spellContext.getSpell().color();
+            }
+
+            Method particleTimeline = spellContext.getSpell().getClass().getMethod("particleTimeline");
+            Object timelineMap = particleTimeline.invoke(spellContext.getSpell());
+            Method get = timelineMap.getClass().getMethod("get", Supplier.class);
+            Object wololoTimeline = get.invoke(timelineMap, supplier);
+            Method getColor = wololoTimeline.getClass().getMethod("getColor");
+            Object color = getColor.invoke(wololoTimeline);
+            if (color instanceof ParticleColor particleColor) {
+                return particleColor;
+            }
+        } catch (ReflectiveOperationException | LinkageError ignored) {
+            // Older Ars Nouveau builds did not expose per-effect particle timelines.
+        }
+        return spellContext.getSpell().color();
     }
 }
