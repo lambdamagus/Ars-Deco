@@ -19,6 +19,7 @@ import java.util.Optional;
 
 public final class DyeableArsBlocks {
     public static final String COLOR_TAG = "ars_deco_color";
+    private static final String ARS_ADDITIONS = "ars_additions";
 
     private static final String[][] TARGETS = {
             {"agronomic_sourcelink"},
@@ -179,6 +180,37 @@ public final class DyeableArsBlocks {
             {"wixie_cauldron"}
     };
 
+    private static final String[][] ARS_ADDITIONS_TARGETS = {
+            {"archwood_chain"},
+            {"archwood_lantern"},
+            {"archwood_magelight_lantern"},
+            {"cracked_polished_sourcestone"},
+            {"cracked_polished_sourcestone_large_bricks"},
+            {"cracked_polished_sourcestone_small_bricks"},
+            {"cracked_polished_sourcestone_wall", "cracked_polished_sourcestone"},
+            {"cracked_sourcestone"},
+            {"cracked_sourcestone_large_bricks"},
+            {"cracked_sourcestone_small_bricks"},
+            {"cracked_sourcestone_wall", "cracked_sourcestone"},
+            {"magebloom_carpet"},
+            {"polished_sourcestone_button", "smooth_sourcestone"},
+            {"polished_sourcestone_chain"},
+            {"polished_sourcestone_door", "polished_sourcestone_door_bottom"},
+            {"polished_sourcestone_lantern"},
+            {"polished_sourcestone_magelight_lantern"},
+            {"polished_sourcestone_trapdoor"},
+            {"polished_sourcestone_wall", "smooth_sourcestone_large_bricks"},
+            {"source_spawner"},
+            {"sourcestone_button", "sourcestone"},
+            {"sourcestone_chain"},
+            {"sourcestone_door", "sourcestone_door_bottom"},
+            {"sourcestone_lantern"},
+            {"sourcestone_magelight_lantern"},
+            {"sourcestone_trapdoor"},
+            {"sourcestone_wall", "sourcestone_large_bricks"},
+            {"warp_nexus"}
+    };
+
     private static final Map<Item, DyeTarget> BY_ITEM = new HashMap<>();
     private static final Map<Block, DyeTarget> BY_BLOCK = new HashMap<>();
     private static boolean initialized;
@@ -227,26 +259,35 @@ public final class DyeableArsBlocks {
         }
         initialized = true;
 
-        for (String[] target : TARGETS) {
-            String blockPath = target[0];
-            String textureKey = target.length > 1 ? target[1] : blockPath;
-            ResourceLocation blockId = ArsNouveau.prefix(blockPath);
-            Block block = BuiltInRegistries.BLOCK.get(blockId);
-            Item item = BuiltInRegistries.ITEM.get(blockId);
+        registerTargets(ArsNouveau.MODID, TARGETS);
+        registerTargets(ARS_ADDITIONS, ARS_ADDITIONS_TARGETS);
+    }
 
-            if (block == null || item == null) {
-                continue;
-            }
-
-            ResourceLocation resolvedBlockId = BuiltInRegistries.BLOCK.getKey(block);
-            ResourceLocation resolvedItemId = BuiltInRegistries.ITEM.getKey(item);
-            if (!blockId.equals(resolvedBlockId) || !blockId.equals(resolvedItemId)) {
-                continue;
-            }
-
-            DyeTarget dyeTarget = new DyeTarget(block, item, textureKey, blockId);
-            BY_ITEM.put(item, dyeTarget);
-            BY_BLOCK.put(block, dyeTarget);
+    private static void registerTargets(String namespace, String[][] targets) {
+        for (String[] target : targets) {
+            registerTarget(namespace, target);
         }
+    }
+
+    private static void registerTarget(String namespace, String[] target) {
+        String blockPath = target[0];
+        String textureKey = target.length > 1 ? target[1] : blockPath;
+        ResourceLocation blockId = ResourceLocation.fromNamespaceAndPath(namespace, blockPath);
+        Block block = BuiltInRegistries.BLOCK.get(blockId);
+        Item item = BuiltInRegistries.ITEM.get(blockId);
+
+        if (block == null || item == null) {
+            return;
+        }
+
+        ResourceLocation resolvedBlockId = BuiltInRegistries.BLOCK.getKey(block);
+        ResourceLocation resolvedItemId = BuiltInRegistries.ITEM.getKey(item);
+        if (!blockId.equals(resolvedBlockId) || !blockId.equals(resolvedItemId)) {
+            return;
+        }
+
+        DyeTarget dyeTarget = new DyeTarget(block, item, textureKey, blockId);
+        BY_ITEM.put(item, dyeTarget);
+        BY_BLOCK.put(block, dyeTarget);
     }
 }

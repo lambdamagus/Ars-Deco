@@ -1,71 +1,464 @@
 {
   "sources": [
-    { "type": "directory", "source": "agronomic_sourcelink", "prefix": "agronomic_sourcelink/" },
-    { "type": "directory", "source": "alchemical_sourcelink", "prefix": "alchemical_sourcelink/" },
-    { "type": "directory", "source": "alteration_table", "prefix": "alteration_table/" },
-    { "type": "directory", "source": "arcane_core", "prefix": "arcane_core/" },
-    { "type": "directory", "source": "arcane_pedestal", "prefix": "arcane_pedestal/" },
-    { "type": "directory", "source": "arcane_platform", "prefix": "arcane_platform/" },
-    { "type": "directory", "source": "archwood_door_bottom", "prefix": "archwood_door_bottom/" },
-    { "type": "directory", "source": "archwood_door_top", "prefix": "archwood_door_top/" },
-    { "type": "directory", "source": "archwood_log", "prefix": "archwood_log/" },
-    { "type": "directory", "source": "archwood_log_top", "prefix": "archwood_log_top/" },
-    { "type": "directory", "source": "archwood_planks", "prefix": "archwood_planks/" },
-    { "type": "directory", "source": "archwood_sconce", "prefix": "archwood_sconce/" },
-    { "type": "directory", "source": "archwood_trapdoor", "prefix": "archwood_trapdoor/" },
-    { "type": "directory", "source": "basic_spell_turret", "prefix": "basic_spell_turret/" },
-    { "type": "directory", "source": "brazier_relay", "prefix": "brazier_relay/" },
-    { "type": "directory", "source": "enchanting_apparatus", "prefix": "enchanting_apparatus/" },
-    { "type": "directory", "source": "gilded_sourcestone_alternating", "prefix": "gilded_sourcestone_alternating/" },
-    { "type": "directory", "source": "gilded_sourcestone_basketweave", "prefix": "gilded_sourcestone_basketweave/" },
-    { "type": "directory", "source": "gilded_sourcestone_large_bricks", "prefix": "gilded_sourcestone_large_bricks/" },
-    { "type": "directory", "source": "gilded_sourcestone_mosaic", "prefix": "gilded_sourcestone_mosaic/" },
-    { "type": "directory", "source": "gilded_sourcestone_small_bricks", "prefix": "gilded_sourcestone_small_bricks/" },
-    { "type": "directory", "source": "grate_archwood", "prefix": "grate_archwood/" },
-    { "type": "directory", "source": "grate_gold", "prefix": "grate_gold/" },
-    { "type": "directory", "source": "grate_smooth_sourcestone", "prefix": "grate_smooth_sourcestone/" },
-    { "type": "directory", "source": "grate_sourcestone", "prefix": "grate_sourcestone/" },
-    { "type": "directory", "source": "imbuement_chamber", "prefix": "imbuement_chamber/" },
-    { "type": "directory", "source": "mana_still", "prefix": "mana_still/" },
-    { "type": "directory", "source": "mana16", "prefix": "mana16/" },
-    { "type": "directory", "source": "mana64", "prefix": "mana64/" },
-    { "type": "directory", "source": "mycelial_sourcelink", "prefix": "mycelial_sourcelink/" },
-    { "type": "directory", "source": "polished_sourcestone_sconce", "prefix": "polished_sourcestone_sconce/" },
-    { "type": "directory", "source": "potion_melder", "prefix": "potion_melder/" },
-    { "type": "directory", "source": "repository", "prefix": "repository/" },
-    { "type": "directory", "source": "ritual_brazier", "prefix": "ritual_brazier/" },
-    { "type": "directory", "source": "sconce", "prefix": "sconce/" },
-    { "type": "directory", "source": "scribes_table", "prefix": "scribes_table/" },
-    { "type": "directory", "source": "smooth_gilded_sourcestone_alternating", "prefix": "smooth_gilded_sourcestone_alternating/" },
-    { "type": "directory", "source": "smooth_gilded_sourcestone_basketweave", "prefix": "smooth_gilded_sourcestone_basketweave/" },
-    { "type": "directory", "source": "smooth_gilded_sourcestone_large_bricks", "prefix": "smooth_gilded_sourcestone_large_bricks/" },
-    { "type": "directory", "source": "smooth_gilded_sourcestone_mosaic", "prefix": "smooth_gilded_sourcestone_mosaic/" },
-    { "type": "directory", "source": "smooth_gilded_sourcestone_small_bricks", "prefix": "smooth_gilded_sourcestone_small_bricks/" },
-    { "type": "directory", "source": "smooth_sourcestone", "prefix": "smooth_sourcestone/" },
-    { "type": "directory", "source": "smooth_sourcestone_alternating", "prefix": "smooth_sourcestone_alternating/" },
-    { "type": "directory", "source": "smooth_sourcestone_basketweave", "prefix": "smooth_sourcestone_basketweave/" },
-    { "type": "directory", "source": "smooth_sourcestone_large_bricks", "prefix": "smooth_sourcestone_large_bricks/" },
-    { "type": "directory", "source": "smooth_sourcestone_mosaic", "prefix": "smooth_sourcestone_mosaic/" },
-    { "type": "directory", "source": "smooth_sourcestone_small_bricks", "prefix": "smooth_sourcestone_small_bricks/" },
-    { "type": "directory", "source": "source_collector", "prefix": "source_collector/" },
-    { "type": "directory", "source": "source_deposit", "prefix": "source_deposit/" },
-    { "type": "directory", "source": "source_jar", "prefix": "source_jar/" },
-    { "type": "directory", "source": "source_relay", "prefix": "source_relay/" },
-    { "type": "directory", "source": "source_splitter", "prefix": "source_splitter/" },
-    { "type": "directory", "source": "source_still", "prefix": "source_still/" },
-    { "type": "directory", "source": "source_warp", "prefix": "source_warp/" },
-    { "type": "directory", "source": "sourcestone", "prefix": "sourcestone/" },
-    { "type": "directory", "source": "sourcestone_alternating", "prefix": "sourcestone_alternating/" },
-    { "type": "directory", "source": "sourcestone_basketweave", "prefix": "sourcestone_basketweave/" },
-    { "type": "directory", "source": "sourcestone_large_bricks", "prefix": "sourcestone_large_bricks/" },
-    { "type": "directory", "source": "sourcestone_mosaic", "prefix": "sourcestone_mosaic/" },
-    { "type": "directory", "source": "sourcestone_sconce", "prefix": "sourcestone_sconce/" },
-    { "type": "directory", "source": "sourcestone_small_bricks", "prefix": "sourcestone_small_bricks/" },
-    { "type": "directory", "source": "spell_turret", "prefix": "spell_turret/" },
-    { "type": "directory", "source": "spell_turret_timer", "prefix": "spell_turret_timer/" },
-    { "type": "directory", "source": "vitalic_sourcelink", "prefix": "vitalic_sourcelink/" },
-    { "type": "directory", "source": "volcanic_sourcelink", "prefix": "volcanic_sourcelink/" },
-    { "type": "directory", "source": "warp_portal", "prefix": "warp_portal/" },
-    { "type": "directory", "source": "wixie_cauldron", "prefix": "wixie_cauldron/" }
+    {
+      "type": "directory",
+      "source": "block/agronomic_sourcelink",
+      "prefix": "block/agronomic_sourcelink/"
+    },
+    {
+      "type": "directory",
+      "source": "block/alchemical_sourcelink",
+      "prefix": "block/alchemical_sourcelink/"
+    },
+    {
+      "type": "directory",
+      "source": "block/alteration_table",
+      "prefix": "block/alteration_table/"
+    },
+    {
+      "type": "directory",
+      "source": "block/arcane_core",
+      "prefix": "block/arcane_core/"
+    },
+    {
+      "type": "directory",
+      "source": "block/arcane_pedestal",
+      "prefix": "block/arcane_pedestal/"
+    },
+    {
+      "type": "directory",
+      "source": "block/arcane_platform",
+      "prefix": "block/arcane_platform/"
+    },
+    {
+      "type": "directory",
+      "source": "block/archwood_chain",
+      "prefix": "block/archwood_chain/"
+    },
+    {
+      "type": "directory",
+      "source": "block/archwood_door_bottom",
+      "prefix": "block/archwood_door_bottom/"
+    },
+    {
+      "type": "directory",
+      "source": "block/archwood_door_top",
+      "prefix": "block/archwood_door_top/"
+    },
+    {
+      "type": "directory",
+      "source": "block/archwood_lantern",
+      "prefix": "block/archwood_lantern/"
+    },
+    {
+      "type": "directory",
+      "source": "block/archwood_log",
+      "prefix": "block/archwood_log/"
+    },
+    {
+      "type": "directory",
+      "source": "block/archwood_log_top",
+      "prefix": "block/archwood_log_top/"
+    },
+    {
+      "type": "directory",
+      "source": "block/archwood_magelight_lantern",
+      "prefix": "block/archwood_magelight_lantern/"
+    },
+    {
+      "type": "directory",
+      "source": "block/archwood_planks",
+      "prefix": "block/archwood_planks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/archwood_sconce",
+      "prefix": "block/archwood_sconce/"
+    },
+    {
+      "type": "directory",
+      "source": "block/archwood_trapdoor",
+      "prefix": "block/archwood_trapdoor/"
+    },
+    {
+      "type": "directory",
+      "source": "block/basic_spell_turret",
+      "prefix": "block/basic_spell_turret/"
+    },
+    {
+      "type": "directory",
+      "source": "block/brazier_relay",
+      "prefix": "block/brazier_relay/"
+    },
+    {
+      "type": "directory",
+      "source": "block/cracked_polished_sourcestone",
+      "prefix": "block/cracked_polished_sourcestone/"
+    },
+    {
+      "type": "directory",
+      "source": "block/cracked_polished_sourcestone_large_bricks",
+      "prefix": "block/cracked_polished_sourcestone_large_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/cracked_polished_sourcestone_small_bricks",
+      "prefix": "block/cracked_polished_sourcestone_small_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/cracked_sourcestone",
+      "prefix": "block/cracked_sourcestone/"
+    },
+    {
+      "type": "directory",
+      "source": "block/cracked_sourcestone_large_bricks",
+      "prefix": "block/cracked_sourcestone_large_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/cracked_sourcestone_small_bricks",
+      "prefix": "block/cracked_sourcestone_small_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/enchanting_apparatus",
+      "prefix": "block/enchanting_apparatus/"
+    },
+    {
+      "type": "directory",
+      "source": "block/gilded_sourcestone_alternating",
+      "prefix": "block/gilded_sourcestone_alternating/"
+    },
+    {
+      "type": "directory",
+      "source": "block/gilded_sourcestone_basketweave",
+      "prefix": "block/gilded_sourcestone_basketweave/"
+    },
+    {
+      "type": "directory",
+      "source": "block/gilded_sourcestone_large_bricks",
+      "prefix": "block/gilded_sourcestone_large_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/gilded_sourcestone_mosaic",
+      "prefix": "block/gilded_sourcestone_mosaic/"
+    },
+    {
+      "type": "directory",
+      "source": "block/gilded_sourcestone_small_bricks",
+      "prefix": "block/gilded_sourcestone_small_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/grate_archwood",
+      "prefix": "block/grate_archwood/"
+    },
+    {
+      "type": "directory",
+      "source": "block/grate_gold",
+      "prefix": "block/grate_gold/"
+    },
+    {
+      "type": "directory",
+      "source": "block/grate_smooth_sourcestone",
+      "prefix": "block/grate_smooth_sourcestone/"
+    },
+    {
+      "type": "directory",
+      "source": "block/grate_sourcestone",
+      "prefix": "block/grate_sourcestone/"
+    },
+    {
+      "type": "directory",
+      "source": "block/imbuement_chamber",
+      "prefix": "block/imbuement_chamber/"
+    },
+    {
+      "type": "directory",
+      "source": "block/magebloom_carpet",
+      "prefix": "block/magebloom_carpet/"
+    },
+    {
+      "type": "directory",
+      "source": "block/mana_still",
+      "prefix": "block/mana_still/"
+    },
+    {
+      "type": "directory",
+      "source": "block/mana16",
+      "prefix": "block/mana16/"
+    },
+    {
+      "type": "directory",
+      "source": "block/mana64",
+      "prefix": "block/mana64/"
+    },
+    {
+      "type": "directory",
+      "source": "block/mycelial_sourcelink",
+      "prefix": "block/mycelial_sourcelink/"
+    },
+    {
+      "type": "directory",
+      "source": "block/polished_sourcestone_chain",
+      "prefix": "block/polished_sourcestone_chain/"
+    },
+    {
+      "type": "directory",
+      "source": "block/polished_sourcestone_door_bottom",
+      "prefix": "block/polished_sourcestone_door_bottom/"
+    },
+    {
+      "type": "directory",
+      "source": "block/polished_sourcestone_door_top",
+      "prefix": "block/polished_sourcestone_door_top/"
+    },
+    {
+      "type": "directory",
+      "source": "block/polished_sourcestone_lantern",
+      "prefix": "block/polished_sourcestone_lantern/"
+    },
+    {
+      "type": "directory",
+      "source": "block/polished_sourcestone_magelight_lantern",
+      "prefix": "block/polished_sourcestone_magelight_lantern/"
+    },
+    {
+      "type": "directory",
+      "source": "block/polished_sourcestone_sconce",
+      "prefix": "block/polished_sourcestone_sconce/"
+    },
+    {
+      "type": "directory",
+      "source": "block/polished_sourcestone_trapdoor",
+      "prefix": "block/polished_sourcestone_trapdoor/"
+    },
+    {
+      "type": "directory",
+      "source": "block/potion_melder",
+      "prefix": "block/potion_melder/"
+    },
+    {
+      "type": "directory",
+      "source": "block/repository",
+      "prefix": "block/repository/"
+    },
+    {
+      "type": "directory",
+      "source": "block/ritual_brazier",
+      "prefix": "block/ritual_brazier/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sconce",
+      "prefix": "block/sconce/"
+    },
+    {
+      "type": "directory",
+      "source": "block/scribes_table",
+      "prefix": "block/scribes_table/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_gilded_sourcestone_alternating",
+      "prefix": "block/smooth_gilded_sourcestone_alternating/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_gilded_sourcestone_basketweave",
+      "prefix": "block/smooth_gilded_sourcestone_basketweave/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_gilded_sourcestone_large_bricks",
+      "prefix": "block/smooth_gilded_sourcestone_large_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_gilded_sourcestone_mosaic",
+      "prefix": "block/smooth_gilded_sourcestone_mosaic/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_gilded_sourcestone_small_bricks",
+      "prefix": "block/smooth_gilded_sourcestone_small_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_sourcestone",
+      "prefix": "block/smooth_sourcestone/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_sourcestone_alternating",
+      "prefix": "block/smooth_sourcestone_alternating/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_sourcestone_basketweave",
+      "prefix": "block/smooth_sourcestone_basketweave/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_sourcestone_large_bricks",
+      "prefix": "block/smooth_sourcestone_large_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_sourcestone_mosaic",
+      "prefix": "block/smooth_sourcestone_mosaic/"
+    },
+    {
+      "type": "directory",
+      "source": "block/smooth_sourcestone_small_bricks",
+      "prefix": "block/smooth_sourcestone_small_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/source_collector",
+      "prefix": "block/source_collector/"
+    },
+    {
+      "type": "directory",
+      "source": "block/source_deposit",
+      "prefix": "block/source_deposit/"
+    },
+    {
+      "type": "directory",
+      "source": "block/source_jar",
+      "prefix": "block/source_jar/"
+    },
+    {
+      "type": "directory",
+      "source": "block/source_relay",
+      "prefix": "block/source_relay/"
+    },
+    {
+      "type": "directory",
+      "source": "block/source_splitter",
+      "prefix": "block/source_splitter/"
+    },
+    {
+      "type": "directory",
+      "source": "block/source_still",
+      "prefix": "block/source_still/"
+    },
+    {
+      "type": "directory",
+      "source": "block/source_warp",
+      "prefix": "block/source_warp/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone",
+      "prefix": "block/sourcestone/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_alternating",
+      "prefix": "block/sourcestone_alternating/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_basketweave",
+      "prefix": "block/sourcestone_basketweave/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_chain",
+      "prefix": "block/sourcestone_chain/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_door_bottom",
+      "prefix": "block/sourcestone_door_bottom/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_door_top",
+      "prefix": "block/sourcestone_door_top/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_lantern",
+      "prefix": "block/sourcestone_lantern/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_large_bricks",
+      "prefix": "block/sourcestone_large_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_magelight_lantern",
+      "prefix": "block/sourcestone_magelight_lantern/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_mosaic",
+      "prefix": "block/sourcestone_mosaic/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_sconce",
+      "prefix": "block/sourcestone_sconce/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_small_bricks",
+      "prefix": "block/sourcestone_small_bricks/"
+    },
+    {
+      "type": "directory",
+      "source": "block/sourcestone_trapdoor",
+      "prefix": "block/sourcestone_trapdoor/"
+    },
+    {
+      "type": "directory",
+      "source": "block/spell_turret",
+      "prefix": "block/spell_turret/"
+    },
+    {
+      "type": "directory",
+      "source": "block/spell_turret_timer",
+      "prefix": "block/spell_turret_timer/"
+    },
+    {
+      "type": "directory",
+      "source": "block/vitalic_sourcelink",
+      "prefix": "block/vitalic_sourcelink/"
+    },
+    {
+      "type": "directory",
+      "source": "block/volcanic_sourcelink",
+      "prefix": "block/volcanic_sourcelink/"
+    },
+    {
+      "type": "directory",
+      "source": "block/warp_nexus",
+      "prefix": "block/warp_nexus/"
+    },
+    {
+      "type": "directory",
+      "source": "block/warp_portal",
+      "prefix": "block/warp_portal/"
+    },
+    {
+      "type": "directory",
+      "source": "block/wixie_cauldron",
+      "prefix": "block/wixie_cauldron/"
+    },
+    {
+      "type": "directory",
+      "source": "item/polished_sourcestone_door",
+      "prefix": "item/polished_sourcestone_door/"
+    },
+    {
+      "type": "directory",
+      "source": "item/sourcestone_door",
+      "prefix": "item/sourcestone_door/"
+    }
   ]
 }

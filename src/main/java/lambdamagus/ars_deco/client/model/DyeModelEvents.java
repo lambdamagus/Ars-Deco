@@ -1,6 +1,5 @@
 package lambdamagus.ars_deco.client.model;
 
-import com.hollingsworth.arsnouveau.ArsNouveau;
 import lambdamagus.ars_deco.ArsDeco;
 import lambdamagus.ars_deco.dye.DyeableArsBlocks;
 import net.minecraft.client.resources.model.BakedModel;
@@ -28,11 +27,7 @@ public final class DyeModelEvents {
 
     private static boolean shouldWrap(ModelResourceLocation key) {
         String model = key.toString();
-        if (!model.contains(ArsNouveau.MODID + ":")) {
-            return false;
-        }
-
         return DyeableArsBlocks.targets().stream()
-                .anyMatch(target -> model.contains(ArsNouveau.MODID + ":" + target.blockId().getPath()));
+                .anyMatch(target -> model.contains(target.blockId().getNamespace() + ":" + target.blockId().getPath()));
     }
 }
