@@ -1,20 +1,15 @@
 package lambdamagus.ars_deco.mixin;
 
-import lambdamagus.ars_deco.dye.ArsDecoDyeableBlockEntity;
+import lambdamagus.ars_deco.dye.DyeBlockColorApplier;
 import lambdamagus.ars_deco.dye.DyeableArsBlocks;
 import lambdamagus.ars_deco.dye.DyeTarget;
-import lambdamagus.ars_deco.dye.PlacedDyeColors;
-import lambdamagus.ars_deco.network.SyncBlockDyeColorPayload;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.neoforged.neoforge.network.PacketDistributor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -50,22 +45,7 @@ public abstract class BlockItemPlacementMixin {
                 return;
             }
 
-            BlockEntity blockEntity = level.getBlockEntity(placedPos);
-            if (blockEntity instanceof ArsDecoDyeableBlockEntity dyeable) {
-                dyeable.arsDeco$setColor(color);
-                blockEntity.setChanged();
-                level.sendBlockUpdated(placedPos, blockEntity.getBlockState(), blockEntity.getBlockState(), 3);
-                if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
-                    PlacedDyeColors.PlacedColor placedColor = new PlacedDyeColors.PlacedColor(target.blockId(), color);
-                    PlacedDyeColors.get(serverLevel).set(placedPos, target.blockId(), color);
-                    PacketDistributor.sendToPlayersTrackingChunk(serverLevel, level.getChunk(placedPos).getPos(), new SyncBlockDyeColorPayload(placedPos, placedColor));
-                }
-            } else if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
-                PlacedDyeColors.PlacedColor placedColor = new PlacedDyeColors.PlacedColor(target.blockId(), color);
-                PlacedDyeColors.get(serverLevel).set(placedPos, target.blockId(), color);
-                level.sendBlockUpdated(placedPos, level.getBlockState(placedPos), level.getBlockState(placedPos), 3);
-                PacketDistributor.sendToPlayersTrackingChunk(serverLevel, level.getChunk(placedPos).getPos(), new SyncBlockDyeColorPayload(placedPos, placedColor));
-            }
+            DyeBlockColorApplier.apply(level, placedPos, target, color);
         } finally {
             arsDeco$placingColor.remove();
         }

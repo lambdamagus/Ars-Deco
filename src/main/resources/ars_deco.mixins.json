@@ -5,7 +5,8 @@
   "refmap": "ars_deco.refmap.json",
   "mixins": [
     "BlockEntityDyeMixin",
-    "BlockItemPlacementMixin"
+    "BlockItemPlacementMixin",
+    "EffectWololoMixin"
   ],
   "minVersion": "0.8",
   "client": [

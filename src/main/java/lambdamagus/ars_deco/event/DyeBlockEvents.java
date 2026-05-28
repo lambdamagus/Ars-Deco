@@ -2,10 +2,10 @@ package lambdamagus.ars_deco.event;
 
 import lambdamagus.ars_deco.ArsDeco;
 import lambdamagus.ars_deco.dye.ArsDecoDyeableBlockEntity;
+import lambdamagus.ars_deco.dye.DyeBlockColorApplier;
 import lambdamagus.ars_deco.dye.DyeableArsBlocks;
 import lambdamagus.ars_deco.dye.DyeTarget;
 import lambdamagus.ars_deco.dye.PlacedDyeColors;
-import lambdamagus.ars_deco.network.SyncBlockDyeColorPayload;
 import lambdamagus.ars_deco.network.SyncChunkDyeColorsPayload;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -71,11 +71,7 @@ public final class DyeBlockEvents {
                 blockEntity.setChanged();
                 level.sendBlockUpdated(pos, blockEntity.getBlockState(), blockEntity.getBlockState(), 3);
                 level.playSound(null, pos, SoundEvents.DYE_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
-                if (level instanceof ServerLevel serverLevel) {
-                    PlacedDyeColors.PlacedColor placedColor = new PlacedDyeColors.PlacedColor(target.blockId(), color);
-                    PlacedDyeColors.get(serverLevel).set(pos, target.blockId(), color);
-                    PacketDistributor.sendToPlayersTrackingChunk(serverLevel, level.getChunk(pos).getPos(), new SyncBlockDyeColorPayload(pos, placedColor));
-                }
+                DyeBlockColorApplier.apply(level, pos, target, color);
 
                 Player player = event.getEntity();
                 if (!player.getAbilities().instabuild) {
@@ -96,11 +92,8 @@ public final class DyeBlockEvents {
                 return;
             }
 
-            PlacedDyeColors.PlacedColor placedColor = new PlacedDyeColors.PlacedColor(target.blockId(), color);
-            colors.set(pos, target.blockId(), color);
             level.playSound(null, pos, SoundEvents.DYE_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
-            level.sendBlockUpdated(pos, level.getBlockState(pos), level.getBlockState(pos), 3);
-            PacketDistributor.sendToPlayersTrackingChunk(serverLevel, level.getChunk(pos).getPos(), new SyncBlockDyeColorPayload(pos, placedColor));
+            DyeBlockColorApplier.apply(level, pos, target, color);
 
             Player player = event.getEntity();
             if (!player.getAbilities().instabuild) {
@@ -141,8 +134,8 @@ public final class DyeBlockEvents {
             }
         }
 
-        PlacedDyeColors.get(event.getLevel()).clear(event.getPos());
-        PacketDistributor.sendToPlayersTrackingChunk(event.getLevel(), event.getLevel().getChunk(event.getPos()).getPos(), new SyncBlockDyeColorPayload(event.getPos(), null));
+        DyeableArsBlocks.target(event.getState().getBlock())
+                .ifPresent(target -> DyeBlockColorApplier.clear(event.getLevel(), event.getPos(), target, event.getState()));
     }
 
     @SubscribeEvent

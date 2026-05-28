@@ -15,6 +15,7 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -76,11 +77,10 @@ public class DyedBakedModel extends BakedModelWrapper<BakedModel> {
             return originalModel.getQuads(state, side, rand, data, renderType);
         }
 
-        TextureAtlasSprite newSprite = sprite(target, color);
         List<BakedQuad> originalQuads = originalModel.getQuads(state, side, rand, data, renderType);
         List<BakedQuad> retextured = new ArrayList<>(originalQuads.size());
         for (BakedQuad quad : originalQuads) {
-            retextured.add(quadCache.retexture(quad, newSprite));
+            retextured.add(quadCache.retexture(quad, sprite(target, color, quad.getSprite().contents().name())));
         }
         return retextured;
     }
@@ -91,11 +91,10 @@ public class DyedBakedModel extends BakedModelWrapper<BakedModel> {
             return originalModel.getQuads(state, side, rand);
         }
 
-        TextureAtlasSprite newSprite = sprite(fixedTarget, fixedColor);
         List<BakedQuad> originalQuads = originalModel.getQuads(state, side, rand);
         List<BakedQuad> retextured = new ArrayList<>(originalQuads.size());
         for (BakedQuad quad : originalQuads) {
-            retextured.add(quadCache.retexture(quad, newSprite));
+            retextured.add(quadCache.retexture(quad, sprite(fixedTarget, fixedColor, quad.getSprite().contents().name())));
         }
         return retextured;
     }
@@ -137,5 +136,9 @@ public class DyedBakedModel extends BakedModelWrapper<BakedModel> {
 
     private TextureAtlasSprite sprite(DyeTarget target, DyeColor color) {
         return textureGetter.apply(new Material(TextureAtlas.LOCATION_BLOCKS, DyeTextures.spriteLocation(target, color)));
+    }
+
+    private TextureAtlasSprite sprite(DyeTarget target, DyeColor color, ResourceLocation originalSprite) {
+        return textureGetter.apply(new Material(TextureAtlas.LOCATION_BLOCKS, DyeTextures.spriteLocation(target, color, originalSprite)));
     }
 }
