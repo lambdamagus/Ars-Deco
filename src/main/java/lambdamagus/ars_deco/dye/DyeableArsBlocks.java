@@ -42,6 +42,7 @@ public final class DyeableArsBlocks {
             {"archwood_trapdoor"},
             {"basic_spell_turret"},
             {"brazier_relay"},
+            {"creative_source_jar", "source_jar"},
             {"enchanting_apparatus"},
             {"gilded_sourcestone_alternating"},
             {"gilded_sourcestone_alternating_slab", "gilded_sourcestone_alternating"},

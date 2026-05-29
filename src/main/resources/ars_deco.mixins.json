@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "ars_deco.refmap.json",
   "mixins": [
+    "AbstractSourceMachineDyeColorMixin",
     "BlockEntityDyeMixin",
     "BlockItemPlacementMixin",
     "EffectWololoMixin"
@@ -11,6 +12,7 @@
   "minVersion": "0.8",
   "client": [
     "client.GenericModelDyeTextureMixin",
-    "client.GeoItemRendererDyeTextureMixin"
+    "client.GeoItemRendererDyeTextureMixin",
+    "client.RepositoryModelDyeTextureMixin"
   ]
 }

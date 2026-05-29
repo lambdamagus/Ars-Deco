@@ -141,9 +141,7 @@ public final class DyeBlockEvents {
     @SubscribeEvent
     public static void onChunkSent(ChunkWatchEvent.Sent event) {
         var colors = PlacedDyeColors.get(event.getLevel()).getChunkColors(event.getPos());
-        if (!colors.isEmpty()) {
-            PacketDistributor.sendToPlayer(event.getPlayer(), new SyncChunkDyeColorsPayload(event.getPos(), colors));
-        }
+        PacketDistributor.sendToPlayer(event.getPlayer(), new SyncChunkDyeColorsPayload(event.getPos(), colors));
     }
 
     private static DyeColor colorFromDropSource(BlockDropsEvent event) {
